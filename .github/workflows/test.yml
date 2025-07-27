@@ -12,13 +12,12 @@ jobs:
         node-version: 'lts/*'
     - name: check
       run: |
-        curl -LO https://github.com/vi/websocat/releases/download/v1.13.0/websocat.x86_64-unknown-linux-musl 
-        chmod +x websocat.x86_64-unknown-linux-musl
         Testing websocat
-        ./websocat.x86_64-unknown-linux-musl -uU wss://dot-rpc.stakeworld.io
+        websocat -uU wss://dot-rpc.stakeworld.io
         echo "Testing outbound IP:"
         curl ifconfig.me
         echo "Testing DNS:"
         dig dot-rpc.stakeworld.io
         echo "Pinging endpoints..."
         ping -c2 dot-rpc.stakeworld.io || true
+        curl dot-rpc.stakeworld.io
