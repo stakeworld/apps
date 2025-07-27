@@ -12,12 +12,6 @@ jobs:
         node-version: 'lts/*'
     - name: check
       run: |
-        #Testing websocat
-        websocat -uU wss://dot-rpc.stakeworld.io
-        echo "Testing outbound IP:"
-        curl ifconfig.me
         echo "Testing DNS:"
         dig dot-rpc.stakeworld.io
-        echo "Pinging endpoints..."
-        ping -c2 dot-rpc.stakeworld.io || true
         curl dot-rpc.stakeworld.io
