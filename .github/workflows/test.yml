@@ -14,4 +14,4 @@ jobs:
       run: |
         echo "Testing DNS:"
         dig dot-rpc.stakeworld.io
-        curl dot-rpc.stakeworld.io
+        curl https://dot-rpc.stakeworld.io
