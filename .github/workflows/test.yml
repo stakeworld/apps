@@ -1,0 +1,23 @@
+name: Chain endpoints
+on:
+  workflow_dispatch:
+
+jobs:
+  endpoints:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 'lts/*'
+    - name: check
+      run: |
+        curl -LO https://github.com/vi/websocat/releases/download/v1.13.0/websocat.x86_64-unknown-linux-musl 
+        chmod +x websocat.x86_64-unknown-linux-musl
+        ./websocat.x86_64-unknown-linux-musl -uU wss://dot-rpc.stakeworld.io
+        echo "Testing outbound IP:"
+        curl ifconfig.me
+        echo "Testing DNS:"
+        dig dot-rpc.stakeworld.io
+        echo "Pinging endpoints..."
+        ping -c2 dot-rpc.stakeworld.io || true
